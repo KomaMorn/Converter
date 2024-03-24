@@ -11,20 +11,21 @@
 <body>
   <div class="container">
     <h2 class="mt-5">Sign Up</h2>
-    <form class="mt-5">
+    <form class="mt-5" action="auth/register" method="post">
       <div class="mb-3">
         <label for="inputLogin" class="form-label">Создайте логин</label>
-        <input type="text" class="form-control" id="inputLogin">
+        <input type="text" name="username" class="form-control" id="inputLogin">
       </div>
       <div class="mb-3">
         <label for="inputPassword" class="form-label">Создайте пароль</label>
-        <input type="password" class="form-control" id="inputPassword">
+        <input type="password" name="password" class="form-control" id="inputPassword">
       </div>
       <div class="mb-3">
         <label for="inputPasswordConfirm" class="form-label">Подтвердите пароль</label>
-        <input type="password" class="form-control" id="inputPasswordConfirm">
+        <input type="password" name="confirm" class="form-control" id="inputPasswordConfirm">
       </div>
       <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+      <a href="/converter.ru/login" class="link-primary">Уже есть аккаунт? Войдите.</a>
     </form>
   </div>
 </body>

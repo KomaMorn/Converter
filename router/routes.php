@@ -1,7 +1,10 @@
 <?php
 
-use App\Router;
+use App\Services\Router;
+use App\Controllers\Auth;
 
 Router::page("/login", "login");
 Router::page("/register", "register");
+Router::post("/auth/register", Auth::class, "register");
+Router::post("/auth/login", Auth::class, "login");
 Router::enable();
