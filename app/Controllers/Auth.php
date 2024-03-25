@@ -17,7 +17,7 @@ class Auth
         if (!empty($data['username']) && !empty($data['password']) && !empty($data['confirm'])) {
             if ($data['password'] === $data['confirm']) {
                 $username = $data['username'];
-                $password = md5($data['password']);
+                $password = password_hash($data['password'], PASSWORD_DEFAULT);
 
                 $query = "SELECT * FROM users WHERE username='$username'";
                 $user = mysqli_fetch_assoc(mysqli_query(App::$dataBase, $query));
@@ -43,14 +43,18 @@ class Auth
     {
         if (!empty($data['username']) && !empty($data['password'])) {
             $username = $data['username'];
-            $password = md5($data['password']);
+            $password = $data['password'];
 
-            $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+            $query = "SELECT * FROM users WHERE username='$username'";
             $result = mysqli_query(App::$dataBase, $query);
             $user = mysqli_fetch_assoc($result);
 
             if (!empty($user)) {
-                echo "Вы вошли!";
+                $hash = $user['password'];
+
+                if (password_verify($password, $hash)) {
+                    echo "Вы вошли";
+                }
             } else {
                 echo "Неверно введен логин или пароль";
             }
