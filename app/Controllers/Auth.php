@@ -25,11 +25,14 @@ class Auth
                 if (empty($user)) {
                     $query = "INSERT INTO users SET username='$username', password='$password'";
 			        mysqli_query(App::$dataBase, $query);
+
+                    Router::redirect('/converter.ru/login');
                 } else {
                     echo "Логин занят";
                 }
             } else {
                 Router::error('error500');
+                die();
             }
         }
     }
@@ -53,7 +56,9 @@ class Auth
                 $hash = $user['password'];
 
                 if (password_verify($password, $hash)) {
-                    echo "Вы вошли";
+                    session_start();
+                    $_SESSION['auth'] = true;
+                    Router::redirect('/converter.ru/');
                 }
             } else {
                 echo "Неверно введен логин или пароль";

@@ -24,7 +24,7 @@ class Router
      * Метод регистрирует маршрут для обработки post запроса
      * @return void
      */
-    public static function post(string $uri, mixed $controller, string $method)
+    public static function post(string $uri, mixed $controller, string $method) : void
     {
         self::$list[] = [
             'uri' => $uri,
@@ -66,5 +66,15 @@ class Router
     private static function error(string $error) : void
     {
         require_once BASE_DIR . '/view/errors/' . $error . '.php';
+    }
+
+    /**
+     * Метод, реализующией редирект по соответствующему URI
+     * @param string $uri
+     * @return void
+     */
+    public static function redirect(string $uri) : void
+    {
+        header('Location: ' . $uri);
     }
 }
