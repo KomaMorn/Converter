@@ -31,7 +31,7 @@ $currencyObjects = $client->getValuteObject();
             </div>
             <div class="mb-3">
             <select class="form-select" name="currencyFirst">
-                <option selected>Выберете валюту, которую хотие сконвертировать</option>
+                <option selected>Выберете валюту, которую хотите сконвертировать</option>
                 <?php
                     foreach ($currencyObjects as $currency) {
                         $currencyName = (string) $currency->Name;
@@ -74,7 +74,7 @@ $currencyObjects = $client->getValuteObject();
                 }
             }
 
-            $result = ($cash * $vunitRateFirst) / $vunitRateSecond;
+            $result = round(($cash * $vunitRateFirst) / $vunitRateSecond, 2);
             
             echo "<h3 class=\"mt-4\"> $result </h3>";
         ?>
